@@ -21,7 +21,7 @@ Instead of opening an attachment in a new tab (or forcing a full-page download),
 | --- | --- |
 | MyBB | 1.8.x (`compatibility: 18*`) |
 | PHP | 7.4+ (works on PHP 8.x) |
-| PluginLibrary | Required — `inc/plugins/pluginlibrary.php` |
+| PluginLibrary | Bundled — `inc/plugins/pluginlibrary.php` (v13, LGPL-3.0+, © Andreas Klauer) |
 
 ## Installation
 
@@ -36,6 +36,7 @@ Uninstalling removes the settings group and the cached stylesheet. No database t
 
 ```
 inc/plugins/attachmentpreview.php                          # plugin bootstrap + hooks
+inc/plugins/pluginlibrary.php                              # bundled PluginLibrary (LGPL-3.0+)
 inc/plugins/AttachmentPreview/Assets/preview.css           # lightbox styles (cached via PluginLibrary)
 inc/plugins/AttachmentPreview/Assets/preview.js            # lightbox logic, navigation, keyboard
 inc/plugins/AttachmentPreview/Templates/attachmentpreview_skel_scripts.html  # injected script block
@@ -55,6 +56,7 @@ The script block is appended before `</body>` on page output, and only when the 
 
 ## Notes
 
+- `inc/plugins/pluginlibrary.php` is the bundled PluginLibrary library (v13, LGPL-3.0+, © Andreas Klauer), shipped so the plugin works without a separate download. Keep its copyright header intact if you redistribute it.
 - No template edits are performed and no core files are modified; the plugin works entirely through the `global_start` and `pre_output_page` hooks.
 - The stylesheet is stored in MyBB's stylesheet cache by PluginLibrary. Editing `preview.css` on disk requires deactivating and reactivating the plugin to refresh the cache.
 - If PluginLibrary is missing, activation and uninstall abort with an Admin CP error message instead of half-installing.
